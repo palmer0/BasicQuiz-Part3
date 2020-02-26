@@ -70,6 +70,13 @@ public class CheatActivity extends AppCompatActivity {
   }
 
 
+  @Override
+  public void onBackPressed() {
+    Log.d(TAG, "onBackPressed()");
+
+    returnCheatedStatus();
+  }
+
   public void onButtonClick(View view) {
 
     switch (view.getId()) {
@@ -93,12 +100,6 @@ public class CheatActivity extends AppCompatActivity {
     }
   }
 
-  @Override
-  public void onBackPressed() {
-    Log.d(TAG, "onBackPressed()");
-
-    returnCheatedStatus();
-  }
 
   private void falseButtonClicked() {
     returnCheatedStatus();
