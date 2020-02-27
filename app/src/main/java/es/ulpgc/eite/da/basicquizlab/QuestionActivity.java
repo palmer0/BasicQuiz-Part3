@@ -35,7 +35,7 @@ public class QuestionActivity extends AppCompatActivity {
     linkLayoutComponents();
     initLayoutContent();
 
-    updateLayoutData();
+    updateLayoutContent();
 
   }
 
@@ -65,7 +65,7 @@ public class QuestionActivity extends AppCompatActivity {
 
   }
 
-  private void updateLayoutData() {
+  private void updateLayoutContent() {
     questionText.setText(questionArray[questionIndex]);
     replyText.setText(R.string.empty_text);
   }
@@ -169,7 +169,7 @@ public class QuestionActivity extends AppCompatActivity {
     checkIndexData();
 
     if(questionIndex < questionArray.length) {
-      updateLayoutData();
+      updateLayoutContent();
     }
 
   }
