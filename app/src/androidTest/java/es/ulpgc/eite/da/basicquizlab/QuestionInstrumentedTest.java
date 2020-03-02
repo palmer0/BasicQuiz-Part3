@@ -54,7 +54,7 @@ public class QuestionInstrumentedTest {
     ViewInteraction button = onView(withId(R.id.trueButton));
     button.perform(click());
 
-    // THEN & GIVEN
+    // THEN
 
     ViewInteraction textView3 = onView(withId(R.id.questionText));
     textView3.check(matches(withText(questionArray[0])));
@@ -63,6 +63,15 @@ public class QuestionInstrumentedTest {
     textView4.check(matches(withText(correctText)));
 
     // ------------------------
+
+
+    // GIVEN
+
+    ViewInteraction textView43 = onView(withId(R.id.questionText));
+    textView43.check(matches(withText(questionArray[0])));
+
+    ViewInteraction textView44 = onView(withId(R.id.replyText));
+    textView44.check(matches(withText(correctText)));
 
     // WHEN
 
