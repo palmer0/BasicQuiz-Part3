@@ -13,7 +13,6 @@ public class CheatActivity extends AppCompatActivity {
 
   public static final String TAG = "Quiz.CheatActivity";
 
-
   public final static String EXTRA_ANSWER = "EXTRA_ANSWER";
   public final static String EXTRA_CHEATED = "EXTRA_CHEATED";
 
@@ -68,7 +67,6 @@ public class CheatActivity extends AppCompatActivity {
     finish();
 
   }
-
 
   @Override
   public void onBackPressed() {
