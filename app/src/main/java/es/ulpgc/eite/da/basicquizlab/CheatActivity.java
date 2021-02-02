@@ -35,7 +35,6 @@ public class CheatActivity extends AppCompatActivity {
     initLayoutContent();
   }
 
-
   private void initLayoutData() {
     currentAnswer = getIntent().getExtras().getInt(EXTRA_ANSWER);
   }
@@ -65,7 +64,6 @@ public class CheatActivity extends AppCompatActivity {
     setResult(RESULT_OK, intent);
 
     finish();
-
   }
 
   @Override
@@ -86,7 +84,6 @@ public class CheatActivity extends AppCompatActivity {
       case R.id.yesButton:
         yesButtonClicked();
     }
-
   }
 
   private void yesButtonClicked() {
@@ -99,7 +96,6 @@ public class CheatActivity extends AppCompatActivity {
 
     }
   }
-
 
   private void noButtonClicked() {
     returnCheatedStatus();
