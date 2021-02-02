@@ -67,7 +67,10 @@ public class QuestionActivity extends AppCompatActivity {
 
   private void updateLayoutContent() {
     questionText.setText(questionArray[questionIndex]);
-    replyText.setText(R.string.empty_text);
+
+    if(!nextButtonEnabled) {
+      replyText.setText(R.string.empty_text);
+    }
 
     nextButton.setEnabled(nextButtonEnabled);
     cheatButton.setEnabled(!nextButtonEnabled);
