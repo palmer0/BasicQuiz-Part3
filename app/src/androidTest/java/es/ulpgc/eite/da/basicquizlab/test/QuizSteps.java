@@ -30,7 +30,7 @@ import static org.hamcrest.Matchers.not;
 public class QuizSteps {
 
   @Rule
-  public ActivityTestRule<QuestionActivity> questionTestRule =
+  public ActivityTestRule<QuestionActivity> testRule =
       new ActivityTestRule(QuestionActivity.class, true, false);
 
   private Activity activity;
@@ -38,13 +38,13 @@ public class QuizSteps {
 
   @Before("@quiz-feature")
   public void setUp() {
-    questionTestRule.launchActivity(new Intent());
-    activity = questionTestRule.getActivity();
+    testRule.launchActivity(new Intent());
+    activity = testRule.getActivity();
   }
 
   @After("@quiz-feature")
   public void tearDown() {
-    questionTestRule.finishActivity();
+    testRule.finishActivity();
   }
 
   
