@@ -3,7 +3,6 @@ package es.ulpgc.eite.da.basicquizlab;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -31,14 +30,20 @@ public class QuestionActivity extends AppCompatActivity {
     getSupportActionBar().setTitle(R.string.question_title);
 
     initLayoutData();
-
     linkLayoutComponents();
-    initLayoutContent();
-
+    //initLayoutContent();
     updateLayoutContent();
-
+    enableLayoutButtons();
   }
 
+
+  private void enableLayoutButtons() {
+
+    trueButton.setOnClickListener(v -> onTrueButtonClicked());
+    falseButton.setOnClickListener(v -> onFalseButtonClicked());
+    nextButton.setOnClickListener(v -> onNextButtonClicked());
+    cheatButton.setOnClickListener(v -> onCheatButtonClicked());
+  }
 
   private void initLayoutData() {
     questionArray=getResources().getStringArray(R.array.question_array);
@@ -56,14 +61,14 @@ public class QuestionActivity extends AppCompatActivity {
     replyText = findViewById(R.id.replyText);
   }
 
-  private void initLayoutContent() {
-    falseButton.setText(R.string.false_button_text);
-    trueButton.setText(R.string.true_button_text);
-    nextButton.setText(R.string.next_button_text);
-    cheatButton.setText(R.string.cheat_button_text);
-
-
-  }
+//  private void initLayoutContent() {
+//    falseButton.setText(R.string.false_button_text);
+//    trueButton.setText(R.string.true_button_text);
+//    nextButton.setText(R.string.next_button_text);
+//    cheatButton.setText(R.string.cheat_button_text);
+//
+//
+//  }
 
   private void updateLayoutContent() {
     questionText.setText(questionArray[questionIndex]);
@@ -78,52 +83,55 @@ public class QuestionActivity extends AppCompatActivity {
     trueButton.setEnabled(!nextButtonEnabled);
   }
 
-  public void onButtonClick(View view) {
+//  public void onButtonClick(View view) {
+//
+//    switch (view.getId()) {
+//      case R.id.falseButton:
+//      case R.id.trueButton:
+//        buttonClicked(view.getId());
+//        break;
+//      case R.id.nextButton:
+//        onNextButtonClicked();
+//        break;
+//      case R.id.cheatButton:
+//        onCheatButtonClicked();
+//    }
+//
+//  }
 
-    switch (view.getId()) {
-      case R.id.falseButton:
-      case R.id.trueButton:
-        buttonClicked(view.getId());
-        break;
-      case R.id.nextButton:
-        nextButtonClicked();
-        break;
-      case R.id.cheatButton:
-        cheatButtonClicked();
-    }
+//  private void buttonClicked(int id) {
+//
+//    /*
+//    if(nextButtonEnabled) {
+//      return;
+//    }
+//    */
+//
+//    switch (id) {
+//      case R.id.falseButton:
+//        onFalseButtonClicked();
+//        break;
+//      case R.id.trueButton:
+//        onTrueButtonClicked();
+//    }
+//
+//    nextButtonEnabled = true;
+//    updateLayoutContent();
+//  }
 
-  }
-
-  private void buttonClicked(int id) {
-
-    /*
-    if(nextButtonEnabled) {
-      return;
-    }
-    */
-
-    switch (id) {
-      case R.id.falseButton:
-        falseButtonClicked();
-        break;
-      case R.id.trueButton:
-        trueButtonClicked();
-    }
-
-    nextButtonEnabled = true;
-    updateLayoutContent();
-  }
-
-  private void trueButtonClicked() {
+  private void onTrueButtonClicked() {
 
     if(replyArray[questionIndex] == 1) {
       replyText.setText(R.string.correct_text);
     } else {
       replyText.setText(R.string.incorrect_text);
     }
+
+    nextButtonEnabled = true;
+    updateLayoutContent();
   }
 
-  private void falseButtonClicked() {
+  private void onFalseButtonClicked() {
 
     if(replyArray[questionIndex] == 0) {
       replyText.setText(R.string.correct_text);
@@ -131,9 +139,12 @@ public class QuestionActivity extends AppCompatActivity {
       replyText.setText(R.string.incorrect_text);
     }
 
+    nextButtonEnabled = true;
+    updateLayoutContent();
+
   }
 
-  private void cheatButtonClicked() {
+  private void onCheatButtonClicked() {
 
     /*
     if(nextButtonEnabled) {
@@ -162,14 +173,14 @@ public class QuestionActivity extends AppCompatActivity {
 
         if(answerCheated) {
           nextButtonEnabled = true;
-          nextButtonClicked();
+          onNextButtonClicked();
         }
       }
     }
   }
 
-  private void nextButtonClicked() {
-    Log.d(TAG, "nextButtonClicked()");
+  private void onNextButtonClicked() {
+    Log.d(TAG, "onNextButtonClicked()");
 
     /*
     if(!nextButtonEnabled) {
