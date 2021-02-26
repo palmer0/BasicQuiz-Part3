@@ -31,7 +31,6 @@ public class QuestionActivity extends AppCompatActivity {
 
     initLayoutData();
     linkLayoutComponents();
-    //initLayoutContent();
     updateLayoutContent();
     enableLayoutButtons();
   }
@@ -61,14 +60,6 @@ public class QuestionActivity extends AppCompatActivity {
     replyText = findViewById(R.id.replyText);
   }
 
-//  private void initLayoutContent() {
-//    falseButton.setText(R.string.false_button_text);
-//    trueButton.setText(R.string.true_button_text);
-//    nextButton.setText(R.string.next_button_text);
-//    cheatButton.setText(R.string.cheat_button_text);
-//
-//
-//  }
 
   private void updateLayoutContent() {
     questionText.setText(questionArray[questionIndex]);
@@ -83,43 +74,14 @@ public class QuestionActivity extends AppCompatActivity {
     trueButton.setEnabled(!nextButtonEnabled);
   }
 
-//  public void onButtonClick(View view) {
-//
-//    switch (view.getId()) {
-//      case R.id.falseButton:
-//      case R.id.trueButton:
-//        buttonClicked(view.getId());
-//        break;
-//      case R.id.nextButton:
-//        onNextButtonClicked();
-//        break;
-//      case R.id.cheatButton:
-//        onCheatButtonClicked();
-//    }
-//
-//  }
-
-//  private void buttonClicked(int id) {
-//
-//    /*
-//    if(nextButtonEnabled) {
-//      return;
-//    }
-//    */
-//
-//    switch (id) {
-//      case R.id.falseButton:
-//        onFalseButtonClicked();
-//        break;
-//      case R.id.trueButton:
-//        onTrueButtonClicked();
-//    }
-//
-//    nextButtonEnabled = true;
-//    updateLayoutContent();
-//  }
 
   private void onTrueButtonClicked() {
+
+    /*
+    if(nextButtonEnabled) {
+      return;
+    }
+    */
 
     if(replyArray[questionIndex] == 1) {
       replyText.setText(R.string.correct_text);
@@ -132,6 +94,12 @@ public class QuestionActivity extends AppCompatActivity {
   }
 
   private void onFalseButtonClicked() {
+
+    /*
+    if(nextButtonEnabled) {
+      return;
+    }
+    */
 
     if(replyArray[questionIndex] == 0) {
       replyText.setText(R.string.correct_text);
