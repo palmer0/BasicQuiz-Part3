@@ -35,7 +35,6 @@ public class QuestionActivity extends AppCompatActivity {
     enableLayoutButtons();
   }
 
-
   private void enableLayoutButtons() {
 
     trueButton.setOnClickListener(v -> onTrueButtonClicked());
