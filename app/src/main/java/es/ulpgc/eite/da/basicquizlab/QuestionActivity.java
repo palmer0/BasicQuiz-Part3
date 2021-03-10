@@ -35,10 +35,25 @@ public class QuestionActivity extends AppCompatActivity {
 
     getSupportActionBar().setTitle(R.string.question_title);
 
+
+    // 1
+
+
+    if(savedInstanceState != null){
+      questionIndex=savedInstanceState.getInt(KEY_INDEX_VALUE);
+      nextButtonEnabled=savedInstanceState.getBoolean(KEY_NEXT_STATUS);
+      trueButtonSelected=savedInstanceState.getBoolean(KEY_SELECTED_BUTTON);
+    }
+
     initLayoutData();
     linkLayoutComponents();
+
+    // 3
+
     updateLayoutContent();
     enableLayoutButtons();
+
+    // 2 (NO)
   }
 
   private void enableLayoutButtons() {
@@ -69,8 +84,28 @@ public class QuestionActivity extends AppCompatActivity {
   private void updateLayoutContent() {
     questionText.setText(questionArray[questionIndex]);
 
-    if(!nextButtonEnabled) {
-      replyText.setText(R.string.empty_text);
+//    if(!nextButtonEnabled) {
+//      replyText.setText(R.string.empty_text);
+//    }
+
+    if(trueButtonSelected) {
+      if(replyArray[questionIndex] == 1) {
+        replyText.setText(R.string.correct_text);
+      } else {
+        replyText.setText(R.string.incorrect_text);
+      }
+
+    } else { // has pulasado false o ninguno
+
+      if(!nextButtonEnabled) {
+        replyText.setText(R.string.empty_text);
+      } else {
+        if(replyArray[questionIndex] == 0) {
+          replyText.setText(R.string.correct_text);
+        } else {
+          replyText.setText(R.string.incorrect_text);
+        }
+      }
     }
 
     nextButton.setEnabled(nextButtonEnabled);
@@ -182,6 +217,8 @@ public class QuestionActivity extends AppCompatActivity {
     checkIndexData();
 
     if(questionIndex < questionArray.length) {
+      //replyText.setText(R.string.empty_text);
+      trueButtonSelected=false;
       updateLayoutContent();
     }
 
