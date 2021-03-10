@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class QuestionActivity extends AppCompatActivity {
@@ -14,6 +15,10 @@ public class QuestionActivity extends AppCompatActivity {
 
   public static final int CHEAT_REQUEST = 1;
 
+  public final static String KEY_NEXT_STATUS = "NEXT_STATUS";
+  public final static String KEY_INDEX_VALUE = "INDEX_VALUE";
+  public final static String KEY_SELECTED_BUTTON = "SELECTED_BUTTON";
+
   private Button falseButton, trueButton,cheatButton, nextButton;
   private TextView questionText, replyText;
 
@@ -21,6 +26,7 @@ public class QuestionActivity extends AppCompatActivity {
   private int questionIndex=0;
   private int[] replyArray;
   private boolean nextButtonEnabled;
+  private boolean trueButtonSelected;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +80,18 @@ public class QuestionActivity extends AppCompatActivity {
   }
 
 
+  @Override
+  protected void onSaveInstanceState(@NonNull Bundle outState) {
+    super.onSaveInstanceState(outState);
+
+    outState.putBoolean(KEY_NEXT_STATUS, nextButtonEnabled);
+    outState.putInt(KEY_INDEX_VALUE, questionIndex);
+    outState.putBoolean(KEY_SELECTED_BUTTON, trueButtonSelected);
+  }
+
   private void onTrueButtonClicked() {
+
+    trueButtonSelected = true;
 
     /*
     if(nextButtonEnabled) {
@@ -93,6 +110,8 @@ public class QuestionActivity extends AppCompatActivity {
   }
 
   private void onFalseButtonClicked() {
+
+    trueButtonSelected = false;
 
     /*
     if(nextButtonEnabled) {
