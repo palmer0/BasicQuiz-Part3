@@ -147,6 +147,7 @@ public class QuestionActivity extends AppCompatActivity {
     }
   }
 
+
   private void onNextButtonClicked() {
     Log.d(TAG, "onNextButtonClicked()");
 
