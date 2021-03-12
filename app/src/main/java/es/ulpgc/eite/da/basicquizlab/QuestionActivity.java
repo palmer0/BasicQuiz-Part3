@@ -6,11 +6,16 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class QuestionActivity extends AppCompatActivity {
 
   public static final String TAG = "Quiz.QuestionActivity";
+
+  public static final String KEY_NEXT_BUTTON = "NEXT_BUTTON";
+  public static final String KEY_INDEX_VALUE = "INDEX_VALUE ";
+  public static final String KEY_USER_BUTTON = "USER_BUTTON";
 
   public static final int CHEAT_REQUEST = 1;
 
@@ -21,6 +26,7 @@ public class QuestionActivity extends AppCompatActivity {
   private int questionIndex=0;
   private int[] replyArray;
   private boolean nextButtonEnabled;
+  private boolean trueButtonClicked;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -147,6 +153,15 @@ public class QuestionActivity extends AppCompatActivity {
     }
   }
 
+  @Override
+  protected void onSaveInstanceState(@NonNull Bundle outState) {
+    super.onSaveInstanceState(outState);
+
+    outState.putBoolean(KEY_NEXT_BUTTON, nextButtonEnabled);
+    outState.putInt(KEY_INDEX_VALUE, questionIndex);
+    outState.putBoolean(KEY_USER_BUTTON, trueButtonClicked);
+
+  }
 
   private void onNextButtonClicked() {
     Log.d(TAG, "onNextButtonClicked()");
