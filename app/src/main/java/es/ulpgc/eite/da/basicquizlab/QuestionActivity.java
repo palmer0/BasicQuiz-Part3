@@ -35,12 +35,65 @@ public class QuestionActivity extends AppCompatActivity {
 
     getSupportActionBar().setTitle(R.string.question_title);
 
+    if(savedInstanceState != null) { // recreando activity
+
+      // fijando estado
+      nextButtonEnabled=savedInstanceState.getBoolean(KEY_NEXT_BUTTON);
+      trueButtonClicked=savedInstanceState.getBoolean(KEY_USER_BUTTON);
+      questionIndex=savedInstanceState.getInt(KEY_INDEX_VALUE);
+
+      // aplicar estado
+    }
+
+    // 1
     initLayoutData();
+    // 2
     linkLayoutComponents();
+    // 3
     updateLayoutContent();
     enableLayoutButtons();
   }
 
+
+
+  private void updateLayoutContent() {
+    questionText.setText(questionArray[questionIndex]);
+
+    /*
+    if(!nextButtonEnabled) {
+      replyText.setText(R.string.empty_text);
+    }
+    */
+
+    if(trueButtonClicked) {
+
+      if(replyArray[questionIndex] == 1) {
+        replyText.setText(R.string.correct_text);
+      } else {
+        replyText.setText(R.string.incorrect_text);
+      }
+
+    } else { // haz hecho clic en false o no haz hecho clic
+
+      if(!nextButtonEnabled) { //  no haz hecho clic
+
+        replyText.setText(R.string.empty_text);
+
+      } else { // haz hecho clic en false
+
+        if(replyArray[questionIndex] == 0) {
+          replyText.setText(R.string.correct_text);
+        } else {
+          replyText.setText(R.string.incorrect_text);
+        }
+      }
+    }
+
+    nextButton.setEnabled(nextButtonEnabled);
+    cheatButton.setEnabled(!nextButtonEnabled);
+    falseButton.setEnabled(!nextButtonEnabled);
+    trueButton.setEnabled(!nextButtonEnabled);
+  }
 
   private void enableLayoutButtons() {
 
@@ -67,21 +120,9 @@ public class QuestionActivity extends AppCompatActivity {
   }
 
 
-  private void updateLayoutContent() {
-    questionText.setText(questionArray[questionIndex]);
-
-    if(!nextButtonEnabled) {
-      replyText.setText(R.string.empty_text);
-    }
-
-    nextButton.setEnabled(nextButtonEnabled);
-    cheatButton.setEnabled(!nextButtonEnabled);
-    falseButton.setEnabled(!nextButtonEnabled);
-    trueButton.setEnabled(!nextButtonEnabled);
-  }
-
-
   private void onTrueButtonClicked() {
+
+    trueButtonClicked = true;
 
     /*
     if(nextButtonEnabled) {
@@ -100,6 +141,8 @@ public class QuestionActivity extends AppCompatActivity {
   }
 
   private void onFalseButtonClicked() {
+
+    trueButtonClicked=false;
 
     /*
     if(nextButtonEnabled) {
@@ -180,6 +223,7 @@ public class QuestionActivity extends AppCompatActivity {
     checkIndexData();
 
     if(questionIndex < questionArray.length) {
+      trueButtonClicked = false;
       updateLayoutContent();
     }
 
