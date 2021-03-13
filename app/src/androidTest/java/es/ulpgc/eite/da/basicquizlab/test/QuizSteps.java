@@ -273,6 +273,7 @@ public class QuizSteps {
     }
   }
 
+
   @When("^girar pantalla$")
   public void girarPantalla() {
 
