@@ -11,14 +11,17 @@ import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
 import androidx.test.uiautomator.UiDevice;
 
+import org.junit.FixMethodOrder;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 
 @SuppressWarnings("ALL")
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class QuizEspressoTests {
